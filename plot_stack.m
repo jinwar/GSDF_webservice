@@ -40,6 +40,27 @@ end
 filename = ['pics/stack/RayleighUS'];
 print('-djpeg',filename);
 
+% make rayleigh event num map
+figure(88)
+clf
+rowN = 3;columnN = floor(length(rayleigh.avgphv)/rowN)+1;
+set(gcf,'color',[1 1 1]);
+for ip = 1:length(rayleigh.avgphv)
+	subplot(rowN,columnN,ip)
+	drawusa;
+	setm(gca,'fontsize',8);
+	surfacem(rayleigh.avgphv((ip)).xi,rayleigh.avgphv((ip)).yi,rayleigh.avgphv(ip).eventnum);
+	colormap(seiscmap)
+	eventnum = rayleigh.avgphv(ip).eventnum;
+	eventnum(find(eventnum==0)) = NaN;
+	meaneventnum = nanmedian(eventnum(:));
+	caxis([0 2*meaneventnum])
+	colorbar
+    title(['Rayleigh Eventnum ',num2str(rayleigh.avgphv((ip)).period),'s  '],'fontsize',10);
+end
+filename = ['htmls/report_files/rayleigh_eventnummap'];
+print('-djpeg',filename);
+
 % Make single frequency plots
 for ip = 1:length(rayleigh.avgphv)
 	figure(88)
@@ -84,6 +105,27 @@ for ip = 1:length(love.avgphv)
     title(['Love Wave ',num2str(love.avgphv((ip)).period),'s  '],'fontsize',10);
 end
 filename = ['pics/stack/LoveUS'];
+print('-djpeg',filename);
+
+% make love event num map
+figure(88)
+clf
+rowN = 3;columnN = floor(length(love.avgphv)/rowN)+1;
+set(gcf,'color',[1 1 1]);
+for ip = 1:length(love.avgphv)
+	subplot(rowN,columnN,ip)
+	drawusa;
+	setm(gca,'fontsize',8);
+	surfacem(love.avgphv((ip)).xi,love.avgphv((ip)).yi,love.avgphv(ip).eventnum);
+	colormap(seiscmap)
+	eventnum = love.avgphv(ip).eventnum;
+	eventnum(find(eventnum==0)) = NaN;
+	meaneventnum = nanmedian(eventnum(:));
+	caxis([0 2*meaneventnum])
+	colorbar
+    title(['Love Event Number ',num2str(love.avgphv((ip)).period),'s  '],'fontsize',10);
+end
+filename = ['htmls/report_files/love_eventnummap'];
 print('-djpeg',filename);
 
 % Make single frequency plots for love wave
