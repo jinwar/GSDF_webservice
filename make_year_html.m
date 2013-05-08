@@ -3,6 +3,9 @@ function make_year_html(year,comp);
 yearstr = num2str(year);
 helm_files = dir(['../',comp,'/helmholtz/',yearstr,'*_helmholtz_',comp,'.mat']);
 % generate html list
+if ~exist('htmls','dir')
+	mkdir('htmls');
+end
 fp = fopen(['./htmls/',yearstr,'_eventlist_',comp,'.html'],'w');
 
 fprintf(fp,'<html>\n');

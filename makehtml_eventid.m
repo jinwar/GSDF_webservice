@@ -3,6 +3,9 @@ function makehtml_eventid(eventid,comp)
 
 is_overwrite = 0;
 
+if ~exist('htmls/event_files','dir')
+	mkdir('htmls/event_files');
+end
 html_file = ['./htmls/event_files/',eventid,'_',comp,'.html'];
 if exist(html_file,'file') && ~is_overwrite
 	disp(['Exist: ',html_file,', skip!']);

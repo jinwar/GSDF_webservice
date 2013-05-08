@@ -95,6 +95,9 @@ set(get(cbar_axis,'xlabel'),'String', 'degree');
 title('Propagation Direction Anomaly')
 
 if isoutput
+	if ~exist('htmls/event_files/pics','dir')
+		mkdir('htmls/event_files/pics')
+	end
 	print('-djpeg',['./htmls/event_files/pics/',eventid,'_',comp,'_',num2str(ip)]);
 end
 

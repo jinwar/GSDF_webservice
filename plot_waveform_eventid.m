@@ -2,6 +2,9 @@ function plot_waveform_eventid(eventid,comp)
 
 is_overwrite = 0;
 
+if ~exist('htmls/event_files/pics','dir')
+	mkdir('htmls/event_files/pics')
+end
 img_file = ['./htmls/event_files/pics/',eventid,'_waveform_',comp,'.jpg'];
 if exist(img_file) && ~is_overwrite
 	disp(['Exist: ',img_file,', skip!'])
